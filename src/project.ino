@@ -1,10 +1,11 @@
 int LEFT_WHEEL_1 = 9;
 int LEFT_WHEEL_2 = 10;
-int LEFT_WHEEL_PWM = 3;
-int RIGHT_WHEEL_1 = 6;
-int RIGHT_WHEEL_2 = 7;
-int RIGHT_WHEEL_PWM = 5;
+int LEFT_WHEEL_PWM = 5;
+int RIGHT_WHEEL_1 = 7;
+int RIGHT_WHEEL_2 = 6;
+int RIGHT_WHEEL_PWM = 3;
 
+int speed = 150;
 
 
 void setup(){
@@ -20,6 +21,7 @@ void loop() {
 
 	test();
 
+
 }
 
 
@@ -27,12 +29,15 @@ void loop() {
 
 
 
-void forward(int speed){
+void forward(){
 	digitalWrite(RIGHT_WHEEL_1, HIGH);
 	digitalWrite(RIGHT_WHEEL_2, LOW);
 
 	digitalWrite(LEFT_WHEEL_1, HIGH);
 	digitalWrite(LEFT_WHEEL_2, LOW);
+
+	analogWrite(LEFT_WHEEL_PWM, speed);
+	analogWrite(RIGHT_WHEEL_PWM, speed);
 }
 
 void stop(){
@@ -48,6 +53,10 @@ void left(){
 
 	digitalWrite(LEFT_WHEEL_1, LOW);
 	digitalWrite(LEFT_WHEEL_2, HIGH);
+
+	analogWrite(LEFT_WHEEL_PWM, speed = 90);
+	analogWrite(RIGHT_WHEEL_PWM, speed = 130);
+
 }
 void right(){
 	digitalWrite(RIGHT_WHEEL_1, LOW);
@@ -55,14 +64,25 @@ void right(){
 
 	digitalWrite(LEFT_WHEEL_1, HIGH);
 	digitalWrite(LEFT_WHEEL_2, LOW);
+
+	analogWrite(LEFT_WHEEL_PWM, speed = 130);
+	analogWrite(RIGHT_WHEEL_PWM, speed = 90);
+
+}
+void back(){
+	digitalWrite(RIGHT_WHEEL_1, LOW);
+	digitalWrite(RIGHT_WHEEL_2, HIGH);
+
+	digitalWrite(LEFT_WHEEL_1, LOW);
+	digitalWrite(LEFT_WHEEL_2, HIGH);
+
+	analogWrite(LEFT_WHEEL_PWM, speed);
+	analogWrite(RIGHT_WHEEL_PWM, speed);
+
+
 }
 void test(){
-	forward(100);
+	forward();
 	delay(2000);
-	stop();
-	delay(2000);
-	left();
-	delay(2000);
-	right();
-	delay(2000);
+	
 }
