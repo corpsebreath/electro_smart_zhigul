@@ -5,6 +5,13 @@ int RIGHT_WHEEL_1 = 7;
 int RIGHT_WHEEL_2 = 6;
 int RIGHT_WHEEL_PWM = 3;
 
+int PWMA = 5;
+int AIN1 = 9;
+int AIN2 = 10;
+int BIN1 = 7;
+int BIN2 = 6;
+int PWMB = 3;
+
 int speed = 150;
 
 
@@ -15,11 +22,42 @@ void setup(){
 
 	pinMode(RIGHT_WHEEL_1, OUTPUT);
 	pinMode(RIGHT_WHEEL_2, OUTPUT);
+
+	bt.begin(9600);
+	pinMode(PWMA, OUTPUT);
+	pinMode(AIN1, OUTPUT);
+	pinMode(AIN2, OUTPUT);
+	pinMode(BIN1, OUTPUT);
+	pinMode(BIN2, OUTPUT);
+	pinMode(PWMB, OUTPUT);
 }
 	
 void loop() {
 
-	test();
+	if(bt.available()) {
+		data = bt.read();
+	}
+	if(data = 'f') {
+		speed();
+		forward();
+	}
+	else if(data == 'b') {
+		speed();
+		back();
+	}
+	else if(data == 'l') {
+		speed();
+		left();
+	}
+	else if(data == 'r') {
+		speed();
+		right();
+	}
+	else if(data == 's') {
+		stop();
+	}
+	
+
 
 
 }
